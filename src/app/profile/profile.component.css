@@ -1,0 +1,44 @@
+body {
+  background: rgb(99, 39, 120)
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #63B8F8;
+}
+
+.profile-button {
+  background: #63B8F8;
+  box-shadow: none;
+  border: none
+}
+
+.profile-button:hover {
+  background: #63B8F8
+}
+
+.profile-button:focus {
+  background: #63B8F8;
+  box-shadow: none
+}
+
+.profile-button:active {
+  background: #63B8F8;
+  box-shadow: none
+}
+
+.back:hover {
+  color: #63B8F8;
+  cursor: pointer
+}
+
+.labels {
+  font-size: 11px
+}
+
+.form-control {
+  background: #FFFFFF;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  border: none;
+}
