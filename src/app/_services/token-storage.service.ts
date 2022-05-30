@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
-const USER_NAME = 'user-name'
+const USER_NAME = 'user-name';
+const DEFENCE_TYPE = 'defence-type';
+const USER = 'user';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +43,19 @@ export class TokenStorageService {
     window.sessionStorage.setItem(USER_NAME, userName);
   }
 
+  public setUser(user: any): void {
+    window.sessionStorage.setItem(USER, user);
+  }
+
   public getUserName(): any {
     return window.sessionStorage.getItem(USER_NAME);
+  }
+
+  public setDefenceType(defence: any): void {
+    window.sessionStorage.setItem(DEFENCE_TYPE, defence);
+  }
+
+  public getDefenceType(): any {
+    return window.sessionStorage.getItem(DEFENCE_TYPE);
   }
 }

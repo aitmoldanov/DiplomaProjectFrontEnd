@@ -16,14 +16,13 @@ export class GeneralComponent implements OnInit {
   errorMessage = '';
 
 
-  constructor(private userService: UserService, private tokenStorage: TokenStorageService,) { }
+  constructor(private userService: UserService, private tokenStorage: TokenStorageService) { }
 
 
   ngOnInit(): void {
     this.userService.getTeamMembers().subscribe(
       response => {
         this.response = response;
-        console.log(this.response);
       },
       err => {
         this.errorMessage = err.error.message;
@@ -34,13 +33,15 @@ export class GeneralComponent implements OnInit {
     this.userService.getUserByUsername(this.tokenStorage.getUserName()).subscribe(
       response => {
         this.user = response[0];
-        console.log(this.response);
+        this.tokenStorage.saveUser(response[0]);
+        console.log(this.tokenStorage.getUser());
       },
       err => {
         this.errorMessage = err.error.message;
 
       }
     );
+
   }
 
 }

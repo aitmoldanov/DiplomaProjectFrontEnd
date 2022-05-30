@@ -1,5 +1,25 @@
-<h1 mat-dialog-title>Are you sure you want to delete?</h1>
-<div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]>Cancel</button>
-  <button class="delete-button" mat-button [mat-dialog-close]="true">Delete</button>
+<div id="main">
+  <app-sidebar></app-sidebar>
+<div class="my-3 p-3 bg-body rounded shadow-sm" *ngFor="let team of potentialTeams">
+  <h6 class="labels">{{team.status}}</h6>
+  <div class="d-flex text-muted pt-3">
+    <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
+      <title>Placeholder</title>
+      <text x="50%" y="50%" fill="#fff" dy=".3em"></text>
+    </svg>
+
+    <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+      <div class="d-flex justify-content-between">
+        <strong class="text-gray-dark">Project theme: {{team.creatorId}}</strong>
+      </div>
+      <span class="d-block" *ngFor="let team of potentialTeamsBeeingApproved"> Team members: {{ team.user.lastname + " " + team.user.firstname}}</span>
+    </div>
+  </div>
+  <small class="d-block text-end mt-3">
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-end">
+      <button class="btn" style="background-color: #63B8F8; color: white" type="button" (click)="acceptInvite()">Accept</button>
+      <button class="btn" style="background-color: #ABDBFB; color: white" type="button">Decline</button>
+    </div>
+  </small>
+</div>
 </div>

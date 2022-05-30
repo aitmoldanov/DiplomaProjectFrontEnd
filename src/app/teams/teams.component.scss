@@ -1,48 +1,23 @@
-p {
-  font-family: Lato;
-}
 table {
-  width: 90%;
-  margin: auto;
-  margin-top: 25px;
-}
-.btn-edit {
-  text-align: right;
-}
-h2 {
-  text-align: center;
-  padding-top: 20px;
+  width: 100%;
 }
 
-.table-header {
-  width: 90%;
-  margin: auto;
-  text-align: right;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.mat-paginator-range-label {
+  display: none;
 }
 
-.button-add-row {
-  background: #1b9e1b;
-  color: #ffffff;
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
 }
 
-.button-remove-rows {
-  background: red;
-  color: #ffffff;
-  margin-right: 5px;
-}
 
-.button-remove {
-  color: red;
+/* Border */
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: rgb(255, 255, 255);
+  /* background-color: white; */
 }
-
-::ng-deep .mat-form-field-infix {
-  width: 100% !important;
-}
-
-.form-input {
-  padding-right: 5px;
+/* Font color */
+input.mat-input-element {
+  color: rgb(0, 0, 0);
 }

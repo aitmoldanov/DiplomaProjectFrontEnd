@@ -13,6 +13,7 @@ import {GradingTeamsComponent} from './grading-teams/grading-teams.component';
 import {GeneralComponent} from './general/general.component';
 import {Error404Component} from "./error404/error404.component";
 import {ScheduleComponent} from "./schedule/schedule.component";
+import {ConfirmDialogComponent} from "./confirm-dialog/confirm-dialog.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'grading-teams', component: GradingTeamsComponent},
   { path: 'general', component: GeneralComponent},
   { path: 'schedule', component: ScheduleComponent},
+  { path: 'confirm-dialog', component: ConfirmDialogComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', pathMatch: 'full',
     component: Error404Component}

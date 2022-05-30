@@ -7,13 +7,15 @@ export interface Subject {
 }
 
 export interface Defence {
+  'Pre-defense I': PreDefense[];
+  'Pre-defense III': PreDefense[];
+  'Pre-defense II': PreDefense[];
+}
+export interface PreDefense {
   id: number;
-  event: Event;
-  eventId: number;
-  team: Team;
-  teamId: number;
-  userGrade: Grade;
-  userGradeId: number;
+  user: User;
+  userId: number;
+  grade: string;
 }
 
 export interface Team {
@@ -64,32 +66,29 @@ export interface User {
   accountNonLocked: boolean;
   credentialsNonExpired: boolean;
 }
-export const UserColumns = [
-  {
-    key: 'isSelected',
-    type: 'isSelected',
-    label: '',
-  },
-  {
-    key: 'id',
-    type: 'text',
-    label: 'First Name',
-    required: true,
-  },
-  {
-    key: 'userId',
-    type: 'text',
-    label: 'Last Name',
-    required: true,
-  },
-  {
-    key: 'grade',
-    type: 'text',
-    label: 'Grade',
-  },
-  {
-    key: 'isEdit',
-    type: 'isEdit',
-    label: '',
-  },
-];
+
+export interface Creator {
+  accountNonExpired: boolean;
+  accountNonLocked: boolean;
+  credentialsNonExpired: boolean;
+  department: string;
+  enabled: boolean;
+  firstname: string;
+  groupName: string;
+  id: number;
+  lastname: string;
+  phone: string;
+  position: string;
+  role: string;
+  username: string;
+}
+
+export interface PotentialTeam {
+  creator: Creator;
+  creatorId: number;
+  id: number;
+  status: string;
+  user: Creator;
+  userId: number;
+  userRole: string;
+}

@@ -1,71 +1,77 @@
 <div id="main">
   <app-sidebar></app-sidebar>
-  <table mat-table [dataSource]="dataSource">
-    <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchema">
-      <th mat-header-cell *matHeaderCellDef>
-        {{ col.label }}
-      </th>
-      <td mat-cell *matCellDef="let element">
-        <div [ngSwitch]="col.type" *ngIf="!element.isEdit">
-          <ng-container *ngSwitchCase="'isSelected'">
-            <mat-checkbox
-              (change)="element.isSelected = $event.checked"
-            ></mat-checkbox>
+  <div class="mat-elevation-z8">
+    <button><mat-icon (click)="AddNewRow()" class="add-button">add_box</mat-icon></button>
+    <br />
+    <form [formGroup]="VOForm" autocomplete="off">
+      <ng-container formArrayName="VORows">
+        <table #table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element; let i = index" [formGroup]="element">
+              <mat-form-field style="width: 70px;" appearance="none">
+                <input matInput type="text" formControlName="id" [readonly]="true">
+              </mat-form-field>
           </ng-container>
-          <div class="btn-edit" *ngSwitchCase="'isEdit'">
-            <button mat-button (click)="element.isEdit = !element.isEdit">
-              Edit
-            </button>
-          </div>
-          <span *ngSwitchCase="'date'">
-          {{ element[col.key] | date: 'mediumDate' }}
-        </span>
-          <span *ngSwitchDefault>
-          {{ element[col.key] }}
-        </span>
-        </div>
-        <div [ngSwitch]="col.type" *ngIf="element.isEdit">
-          <div *ngSwitchCase="'isSelected'"></div>
-          <div class="btn-edit" *ngSwitchCase="'isEdit'">
-            <button
-              mat-button
-              (click)="editRow(element)"
-              [disabled]="disableSubmit(element.id)"
-            >
-              Done
-            </button>
-          </div>
-          <mat-form-field
-            class="form-input"
-            *ngSwitchCase="'date'"
-            appearance="fill"
-          >
-            <mat-label>Choose a date</mat-label>
-            <input
-              matInput
-              [matDatepicker]="picker"
-              [(ngModel)]="element[col.key]"
-            />
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-          <mat-form-field class="form-input" *ngSwitchDefault>
-            <input
-              matInput
-              [required]="col.required"
-              [pattern]="col.pattern"
-              [type]="col.type"
-              [(ngModel)]="element[col.key]"
-              (change)="inputHandler($event, element.id, col.key)"
-            />
-          </mat-form-field>
-        </div>
-      </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="firstname">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element; let i = index" [formGroup]="element">
+              <mat-form-field style="width: 70px;"
+                              [appearance]="VOForm.get('VORows').value[i].isEditable? 'none' : 'legacy'">
+                <input matInput type="text" formControlName="firstname" [readonly]="VOForm.get('VORows').value[i].isEditable">
+              </mat-form-field>
+              <!-- </span> -->
+
+            </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="grade">
+            <th mat-header-cell *matHeaderCellDef> Grade </th>
+            <td mat-cell *matCellDef="let element; let i = index" [formGroup]="element">
+
+              <!-- <span [hidden]="VOForm.get('VORows').value[i].isEditable"> -->
+              <mat-form-field style="width: 70px;"
+                              [appearance]="VOForm.get('VORows').value[i].isEditable? 'none' : 'legacy'">
+                <input matInput type="text" formControlName="grade" [readonly]="VOForm.get('VORows').value[i].isEditable">
+              </mat-form-field>
+              <!-- </span> -->
+
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element; let i = index" [formGroup]="element">
+              <button mat-icon-button class="material-icons app-toolbar-menu save-button"
+                      matTooltip="Save Changes" (click)="SaveVO(VOForm,i, element)"
+                      *ngIf="!VOForm.get('VORows').value[i].isEditable" color="primary">
+                <mat-icon>check_circle</mat-icon>
+              </button>
+
+              <button mat-icon-button class="material-icons app-toolbar-menu cancel-button"
+                      matTooltip="Cancel Changes" color="warn"
+                      (click)="CancelSVO(VOForm,i)"
+                      *ngIf="!VOForm.get('VORows').value[i].isEditable">
+                <mat-icon>cancel</mat-icon>
+              </button>
+
+              <button mat-icon-button class="material-icons app-toolbar-menu save-button"
+                      *ngIf="VOForm.get('VORows').value[i].isEditable"
+                      matTooltip="Edit" color="primary" (click)="EditSVO(VOForm,i)">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </ng-container>
+    </form>
+  </div>
 </div>

@@ -39,7 +39,7 @@
         <li
           class="sidebar-item">
           <a href="/home" class='sidebar-link'>
-            <i class="bi bi-house"></i>
+            <i class="bi bi-house-fill"></i>
             <span>Home</span>
           </a>
         </li>
@@ -53,28 +53,25 @@
         </li>
 
         <li
-          class="sidebar-item  has-sub">
+          class="sidebar-item">
           <a href="/schedule" class='sidebar-link'>
             <i class="bi bi-table"></i>
             <span>Schedule</span>
           </a>
-          <ul class="submenu ">
-            <li class="submenu-item ">
-              <a href="layout-default.html">Default Layout</a>
-            </li>
-            <li class="submenu-item ">
-              <a href="layout-vertical-1-column.html">1 Column</a>
-            </li>
-            <li class="submenu-item ">
-              <a href="layout-vertical-navbar.html">Vertical Navbar</a>
-            </li>
-            <li class="submenu-item ">
-              <a href="layout-rtl.html">RTL Layout</a>
-            </li>
-            <li class="submenu-item ">
-              <a href="layout-horizontal.html">Horizontal Menu</a>
-            </li>
-          </ul>
+        </li>
+        <li
+          class="sidebar-item">
+          <a href="/confirm-dialog" class='sidebar-link'>
+            <i class="bi bi-bell-fill"></i>
+            <span>Confirm invitations</span>
+          </a>
+        </li>
+        <li
+          class="sidebar-item">
+          <a (click)="logout()" href="/login" class='sidebar-link'>
+            <i class="bi bi-door-closed-fill"></i>
+            <span>Logout</span>
+          </a>
         </li>
       </ul>
     </div>
